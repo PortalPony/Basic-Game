@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://csxdcw3x5r0ei"]
+
+[ext_resource type="Texture2D" uid="uid://cmhvnyjdj0qyq" path="res://icon.svg" id="1_djkr8"]
+[ext_resource type="Script" path="res://Placement.gd" id="1_vovqy"]
+
+[node name="Node2D" type="Node2D" node_paths=PackedStringArray("bp", "Tile")]
+script = ExtResource("1_vovqy")
+bp = NodePath("Sprite2D")
+Tile = NodePath("TileMap")
+
+[node name="TileMap" type="TileMap" parent="."]
+format = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_djkr8")

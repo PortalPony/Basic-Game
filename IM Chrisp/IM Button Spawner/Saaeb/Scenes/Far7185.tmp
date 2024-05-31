@@ -1,0 +1,170 @@
+[gd_scene load_steps=15 format=3 uid="uid://c0ywkvdsj6gb4"]
+
+[ext_resource type="Script" path="res://scripts/Farmareea.gd" id="1_4s3r1"]
+[ext_resource type="Texture2D" uid="uid://b3fdxr1dxe8kj" path="res://farmingTilesheetComplete.png" id="2_ymern"]
+[ext_resource type="Texture2D" uid="uid://gksqgl2jynvl" path="res://free.png" id="3_lc40u"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s1eu1"]
+atlas = ExtResource("2_ymern")
+region = Rect2(64, 112, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_74s5w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s1eu1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3upvo"]
+size = Vector2(39, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oqkq7"]
+atlas = ExtResource("3_lc40u")
+region = Rect2(96, 128, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a1jp1"]
+atlas = ExtResource("3_lc40u")
+region = Rect2(128, 128, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6k4l6"]
+atlas = ExtResource("3_lc40u")
+region = Rect2(144, 128, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fjryd"]
+atlas = ExtResource("3_lc40u")
+region = Rect2(96, 144, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e2sx3"]
+atlas = ExtResource("3_lc40u")
+region = Rect2(144, 144, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_238hm"]
+atlas = ExtResource("3_lc40u")
+region = Rect2(160, 144, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1xe1x"]
+atlas = ExtResource("3_lc40u")
+region = Rect2(80, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sxb25"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oqkq7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a1jp1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6k4l6")
+}],
+"loop": false,
+"name": &"Potato",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fjryd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e2sx3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_238hm")
+}],
+"loop": false,
+"name": &"Tomato",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1xe1x")
+}],
+"loop": false,
+"name": &"none",
+"speed": 120.0
+}]
+
+[node name="Farmarea" type="StaticBody2D"]
+script = ExtResource("1_4s3r1")
+
+[node name="Farmland" type="AnimatedSprite2D" parent="."]
+scale = Vector2(3.5, 3.5)
+sprite_frames = SubResource("SpriteFrames_74s5w")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0.5, 2)
+shape = SubResource("RectangleShape2D_3upvo")
+
+[node name="Plant" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1, -6)
+scale = Vector2(3.25, 3.25)
+sprite_frames = SubResource("SpriteFrames_sxb25")
+animation = &"none"
+
+[node name="PotatoTimer" type="Timer" parent="."]
+wait_time = 25.0
+one_shot = true
+
+[node name="TomatoTimer" type="Timer" parent="."]
+wait_time = 25.0
+one_shot = true
+
+[node name="PotatoFrame1" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0.5, 2)
+scale = Vector2(2.78571, 2.23529)
+texture = ExtResource("3_lc40u")
+region_enabled = true
+region_rect = Rect2(113, 128, 14, 17)
+
+[node name="PotatoFrame2" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0.5, 2)
+scale = Vector2(2.4375, 2.23529)
+texture = ExtResource("3_lc40u")
+region_enabled = true
+region_rect = Rect2(127, 128, 16, 17)
+
+[node name="PotatoFrame3" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0.5, 2)
+scale = Vector2(2.16667, 2.53333)
+texture = ExtResource("3_lc40u")
+region_enabled = true
+region_rect = Rect2(143, 129, 18, 15)
+
+[node name="TomatoFrame1" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0.5, 0.999999)
+scale = Vector2(2.6, 2.4)
+texture = ExtResource("3_lc40u")
+region_enabled = true
+region_rect = Rect2(112, 144, 15, 15)
+
+[node name="TomatoFrame2" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0.500001, 1)
+scale = Vector2(2.6, 2.11765)
+texture = ExtResource("3_lc40u")
+region_enabled = true
+region_rect = Rect2(145, 143, 15, 17)
+
+[node name="TomatoFrame3" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, 1)
+scale = Vector2(2.375, 2.25)
+texture = ExtResource("3_lc40u")
+region_enabled = true
+region_rect = Rect2(161, 144, 16, 16)
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
+[connection signal="timeout" from="PotatoTimer" to="." method="_on_potato_timer_timeout"]
+[connection signal="timeout" from="TomatoTimer" to="." method="_on_tomato_timer_timeout"]

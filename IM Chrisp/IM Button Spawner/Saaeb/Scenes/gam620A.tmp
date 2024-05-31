@@ -1,0 +1,205 @@
+[gd_scene load_steps=20 format=3 uid="uid://bdbck5bagm4t8"]
+
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_vpodw"]
+[ext_resource type="PackedScene" uid="uid://b7gvtdwp62g7n" path="res://Scenes/player.tscn" id="1_xpo5q"]
+[ext_resource type="PackedScene" uid="uid://blfsfkukqg2dy" path="res://Scenes/Packofpotato.tscn" id="2_5otcv"]
+[ext_resource type="PackedScene" uid="uid://drkfx1itbd1gb" path="res://Scenes/Packoftomatos.tscn" id="3_vvrte"]
+[ext_resource type="PackedScene" uid="uid://c0ywkvdsj6gb4" path="res://Scenes/Farmareea.tscn" id="4_1t5qt"]
+[ext_resource type="PackedScene" uid="uid://c7a6on241gshp" path="res://UI/Scenes/key_binds.tscn" id="6_3ywex"]
+[ext_resource type="Texture2D" uid="uid://gksqgl2jynvl" path="res://free.png" id="7_verye"]
+[ext_resource type="Texture2D" uid="uid://cae4mf2eagmxx" path="res://Char_002_Idle.png" id="8_w5n22"]
+[ext_resource type="PackedScene" uid="uid://dqyvtuoc263pf" path="res://UI/Scenes/dialog.tscn" id="9_alwny"]
+[ext_resource type="Texture2D" uid="uid://cmhvnyjdj0qyq" path="res://icon.svg" id="10_tqvgc"]
+[ext_resource type="PackedScene" uid="uid://csxdcw3x5r0ei" path="res://Placement.tscn" id="11_hdlca"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_guhpa"]
+texture = ExtResource("10_tqvgc")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_who71"]
+tile_size = Vector2i(128, 128)
+sources/0 = SubResource("TileSetAtlasSource_guhpa")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v7f82"]
+atlas = ExtResource("8_w5n22")
+region = Rect2(0, 0, 72, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cwgjp"]
+atlas = ExtResource("8_w5n22")
+region = Rect2(72, 0, 72, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jhljt"]
+atlas = ExtResource("8_w5n22")
+region = Rect2(144, 0, 72, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iiprp"]
+atlas = ExtResource("8_w5n22")
+region = Rect2(216, 0, 72, 72)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e555q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v7f82")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cwgjp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jhljt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iiprp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_iyoib"]
+radius = 80.0062
+
+[node name="Game" type="Node2D"]
+position = Vector2(715, 81)
+script = ExtResource("1_vpodw")
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_who71")
+format = 2
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(-645, 31)
+texture = ExtResource("10_tqvgc")
+
+[node name="Player" parent="." instance=ExtResource("1_xpo5q")]
+position = Vector2(-160, 241)
+
+[node name="Potato" type="Label" parent="Player"]
+offset_left = 385.0
+offset_top = 215.0
+offset_right = 538.0
+offset_bottom = 255.0
+theme_override_font_sizes/font_size = 30
+text = "0
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Tomatos" type="Label" parent="Player"]
+offset_left = 391.0
+offset_top = 272.0
+offset_right = 544.0
+offset_bottom = 314.0
+theme_override_font_sizes/font_size = 30
+text = "0
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Free2" type="Sprite2D" parent="Player"]
+texture_filter = 1
+position = Vector2(377, 291)
+scale = Vector2(4.3, 4.16666)
+texture = ExtResource("7_verye")
+region_enabled = true
+region_rect = Rect2(177, 146, 14, 13)
+
+[node name="Free" type="Sprite2D" parent="Player"]
+texture_filter = 1
+position = Vector2(377, 237)
+scale = Vector2(4.3, 4.16666)
+texture = ExtResource("7_verye")
+region_enabled = true
+region_rect = Rect2(177, 131, 15, 12)
+
+[node name="Pack of potato" parent="." instance=ExtResource("2_5otcv")]
+position = Vector2(-335.336, -31.4767)
+
+[node name="Pack of tomato" parent="." instance=ExtResource("3_vvrte")]
+position = Vector2(-216.77, -0.363586)
+
+[node name="GUI" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="KeyBinds" parent="GUI" instance=ExtResource("6_3ywex")]
+
+[node name="Npc" type="StaticBody2D" parent="."]
+position = Vector2(147.236, 168.788)
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="Npc"]
+position = Vector2(-166.236, 60.2115)
+scale = Vector2(1.88561, 1.85016)
+sprite_frames = SubResource("SpriteFrames_e555q")
+autoplay = "default"
+
+[node name="Area2D" type="Area2D" parent="Npc"]
+position = Vector2(-173.236, 86.2115)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Npc/Area2D"]
+position = Vector2(9, -7)
+shape = SubResource("CircleShape2D_iyoib")
+
+[node name="dialog" parent="Npc" instance=ExtResource("9_alwny")]
+visible = false
+
+[node name="Farmarea" type="Node2D" parent="."]
+
+[node name="Farmarea" parent="Farmarea" instance=ExtResource("4_1t5qt")]
+position = Vector2(-546, 323)
+
+[node name="Farmarea2" parent="Farmarea" instance=ExtResource("4_1t5qt")]
+position = Vector2(-492, 323)
+
+[node name="Farmarea3" parent="Farmarea" instance=ExtResource("4_1t5qt")]
+position = Vector2(-436, 323)
+
+[node name="Farmarea4" parent="Farmarea" instance=ExtResource("4_1t5qt")]
+position = Vector2(-384, 323)
+
+[node name="Farmarea5" parent="Farmarea" instance=ExtResource("4_1t5qt")]
+position = Vector2(-328, 323)
+
+[node name="Farmarea6" parent="Farmarea" instance=ExtResource("4_1t5qt")]
+position = Vector2(-273, 323)
+
+[node name="Farmarea7" parent="Farmarea" instance=ExtResource("4_1t5qt")]
+position = Vector2(-546, 269)
+
+[node name="Farmarea8" parent="Farmarea" instance=ExtResource("4_1t5qt")]
+position = Vector2(-492, 269)
+
+[node name="Farmarea9" parent="Farmarea" instance=ExtResource("4_1t5qt")]
+position = Vector2(-436, 269)
+
+[node name="Farmarea10" parent="Farmarea" instance=ExtResource("4_1t5qt")]
+position = Vector2(-384, 269)
+
+[node name="Farmarea11" parent="Farmarea" instance=ExtResource("4_1t5qt")]
+position = Vector2(-328, 269)
+
+[node name="Farmarea12" parent="Farmarea" instance=ExtResource("4_1t5qt")]
+position = Vector2(-273, 269)
+
+[node name="Farmarea13" parent="Farmarea" instance=ExtResource("4_1t5qt")]
+position = Vector2(-546, 217)
+
+[node name="Farmarea14" parent="Farmarea" instance=ExtResource("4_1t5qt")]
+position = Vector2(-492, 217)
+
+[node name="Farmarea15" parent="Farmarea" instance=ExtResource("4_1t5qt")]
+position = Vector2(-436, 217)
+
+[node name="Farmarea16" parent="Farmarea" instance=ExtResource("4_1t5qt")]
+position = Vector2(-384, 217)
+
+[node name="Farmarea17" parent="Farmarea" instance=ExtResource("4_1t5qt")]
+position = Vector2(-328, 217)
+
+[node name="Farmarea18" parent="Farmarea" instance=ExtResource("4_1t5qt")]
+position = Vector2(-273, 217)
+
+[node name="Node2D" parent="." instance=ExtResource("11_hdlca")]
+
+[connection signal="body_entered" from="Npc/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Npc/Area2D" to="." method="_on_area_2d_body_exited"]

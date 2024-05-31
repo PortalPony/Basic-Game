@@ -1,0 +1,80 @@
+[gd_scene load_steps=6 format=3 uid="uid://k2rbkehygmjk"]
+
+[ext_resource type="Script" path="res://UI/Scripts/settings.gd" id="1_pjeso"]
+[ext_resource type="PackedScene" uid="uid://dcutibay8pkp8" path="res://UI/Scenes/muic_options.tscn" id="2_1v04b"]
+[ext_resource type="PackedScene" uid="uid://bqedu3mvt1ib2" path="res://UI/Scenes/masteroptions.tscn" id="3_ipdk1"]
+[ext_resource type="PackedScene" uid="uid://crcrh55sb1i3h" path="res://UI/Scenes/sfxoptions.tscn" id="4_utkb6"]
+[ext_resource type="PackedScene" uid="uid://y8nowa7jaokp" path="res://UI/Scenes/h_box_container.tscn" id="5_5lqjc"]
+
+[node name="Settings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pjeso")
+
+[node name="MuicOptions" parent="." instance=ExtResource("2_1v04b")]
+layout_mode = 1
+offset_left = 961.0
+offset_top = 125.0
+offset_right = -175.0
+offset_bottom = -340.0
+rotation = -1.5708
+
+[node name="Music" type="Label" parent="."]
+layout_mode = 0
+offset_left = 997.0
+offset_top = 72.0
+offset_right = 1096.0
+offset_bottom = 95.0
+text = "Music Sound
+"
+
+[node name="Masteroptions" parent="." instance=ExtResource("3_ipdk1")]
+layout_mode = 1
+offset_top = 125.0
+offset_right = -1136.0
+offset_bottom = -340.0
+rotation = -1.5708
+
+[node name="Master" type="Label" parent="."]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 72.0
+offset_right = 148.0
+offset_bottom = 95.0
+text = "Master Sound"
+
+[node name="Sfxoptions" parent="." instance=ExtResource("4_utkb6")]
+layout_mode = 1
+offset_left = 466.0
+offset_top = 125.0
+offset_right = -670.0
+offset_bottom = -340.0
+rotation = -1.5708
+
+[node name="SFX" type="Label" parent="."]
+layout_mode = 0
+offset_left = 512.0
+offset_top = 72.0
+offset_right = 593.0
+offset_bottom = 95.0
+text = "SFX Sound
+"
+
+[node name="HBoxContainer" parent="." instance=ExtResource("5_5lqjc")]
+layout_mode = 0
+offset_top = 0.0
+offset_bottom = 34.0
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_top = 577.0
+offset_right = 148.0
+offset_bottom = 649.0
+theme_override_font_sizes/font_size = 50
+text = "Back"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dl72dgf0ir6fe"]
+
+[ext_resource type="Script" path="res://UI/Scripts/Area2D.gd" id="1_4r43d"]
+
+[node name="Fishing Rod" type="Area2D"]
+script = ExtResource("1_4r43d")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

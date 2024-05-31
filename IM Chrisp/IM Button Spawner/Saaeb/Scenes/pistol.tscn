@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxoruxivgwdd8"]
+
+[ext_resource type="Script" path="res://scripts/pistol.gd" id="1_yhfce"]
+[ext_resource type="Texture2D" uid="uid://2i88i5mvkrd1" path="res://pistol.png" id="2_xxs5k"]
+
+[node name="Pistol" type="Area2D"]
+script = ExtResource("1_yhfce")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Marker2D"]
+position = Vector2(69.625, 3.6875)
+scale = Vector2(0.353572, 0.3325)
+texture = ExtResource("2_xxs5k")
+region_rect = Rect2(0, 118, 13, 10)
+
+[node name="shootingpoinst" type="Marker2D" parent="Marker2D/Sprite2D"]
+unique_name_in_owner = true
+position = Vector2(27.097, 0)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1

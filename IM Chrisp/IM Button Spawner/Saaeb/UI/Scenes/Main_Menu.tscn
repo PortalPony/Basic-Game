@@ -1,0 +1,55 @@
+[gd_scene load_steps=2 format=3 uid="uid://d4jpt0lnrxqw6"]
+
+[ext_resource type="Script" path="res://UI/Scripts/Main_Menu.gd" id="1_vte22"]
+
+[node name="Main menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vte22")
+
+[node name="Play" type="Button" parent="."]
+layout_mode = 0
+offset_left = 150.0
+offset_top = 278.0
+offset_right = 344.0
+offset_bottom = 356.0
+theme_override_font_sizes/font_size = 50
+text = "Play"
+
+[node name="Quit" type="Button" parent="."]
+layout_mode = 0
+offset_left = 790.0
+offset_top = 278.0
+offset_right = 984.0
+offset_bottom = 356.0
+theme_override_font_sizes/font_size = 50
+text = "Quit"
+
+[node name="Settings" type="Button" parent="."]
+layout_mode = 0
+offset_left = 949.0
+offset_top = 564.0
+offset_right = 1151.0
+offset_bottom = 648.0
+theme_override_font_sizes/font_size = 50
+text = "Settings"
+
+[node name="Credits" type="Button" parent="."]
+layout_mode = 0
+offset_top = 564.0
+offset_right = 202.0
+offset_bottom = 648.0
+theme_override_font_sizes/font_size = 50
+text = "Credits
+"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="Credits" to="." method="_on_credits_pressed"]

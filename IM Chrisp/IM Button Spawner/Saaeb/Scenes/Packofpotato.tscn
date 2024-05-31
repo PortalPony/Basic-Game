@@ -1,0 +1,61 @@
+[gd_scene load_steps=6 format=3 uid="uid://blfsfkukqg2dy"]
+
+[ext_resource type="Texture2D" uid="uid://gksqgl2jynvl" path="res://free.png" id="2_d5isw"]
+
+[sub_resource type="GDScript" id="GDScript_a3sgi"]
+script/source = "extends StaticBody2D
+var selected = false
+var seed_type = 2
+
+
+
+
+func _on_area_2d_input_event(viewport, event, shape_idx):
+	if Input.is_action_just_pressed(\"Shoot\"):
+		Global.plantselected = seed_type
+		selected = true
+func _physics_process(delta):
+	if selected:
+		global_position = lerp(global_position, get_global_mouse_position(), 25 * delta)
+func _input(event):
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and not event.pressed:
+			selected = false
+		elif event.button_index == MOUSE_BUTTON_RIGHT and not event.pressed:
+			selected = false
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4vav7"]
+atlas = ExtResource("2_d5isw")
+region = Rect2(64, 128, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lcmpg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4vav7")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_myl78"]
+radius = 19.0
+
+[node name="StaticBody2D" type="StaticBody2D"]
+z_index = 1
+script = SubResource("GDScript_a3sgi")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(3.25, 3.25)
+sprite_frames = SubResource("SpriteFrames_lcmpg")
+animation = &"new_animation"
+autoplay = "new_animation"
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_myl78")
+
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]

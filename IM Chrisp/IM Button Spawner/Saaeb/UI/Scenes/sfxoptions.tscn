@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://crcrh55sb1i3h"]
+
+[ext_resource type="Script" path="res://UI/Scripts/sfxoptions.gd" id="1_7gk1w"]
+
+[node name="Sfxoptions" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7gk1w")
+
+[node name="VSlider" type="VSlider" parent="."]
+layout_mode = 0
+offset_right = 16.0
+offset_bottom = 183.0

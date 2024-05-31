@@ -1,0 +1,64 @@
+[gd_scene load_steps=6 format=3 uid="uid://d10ye0atp2xhp"]
+
+[ext_resource type="Texture2D" uid="uid://115gmyxt2l70" path="res://Sword01.png" id="1_0itrl"]
+[ext_resource type="Script" path="res://Scenes/sword_combat_system.gd" id="1_vltg4"]
+
+[sub_resource type="Animation" id="Animation_fh2gs"]
+resource_name = "swing"
+length = 0.15
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.392699, 0.785398, 1.1781]
+}
+
+[sub_resource type="Animation" id="Animation_m752c"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vlni2"]
+_data = {
+"RESET": SubResource("Animation_m752c"),
+"swing": SubResource("Animation_fh2gs")
+}
+
+[node name="sword combat system" type="Area2D"]
+scale = Vector2(2, 2)
+script = ExtResource("1_vltg4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(16, -13)
+texture = ExtResource("1_0itrl")
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+build_mode = 1
+polygon = PackedVector2Array(25, -27, 25, -26, 24, -26, 24, -25, 23, -25, 23, -24, 22, -24, 22, -23, 21, -23, 21, -22, 20, -22, 20, -21, 19, -21, 19, -20, 18, -20, 18, -19, 17, -19, 17, -18, 16, -18, 16, -17, 15, -17, 15, -16, 14, -16, 14, -15, 13, -15, 13, -14, 12, -14, 12, -13, 11, -13, 11, -12, 12, -12, 12, -11, 13, -11, 13, -10, 14, -10, 14, -9, 15, -9, 15, -8, 15, -8, 16, -8, 16, -9, 17, -9, 17, -10, 18, -10, 18, -11, 19, -11, 19, -12, 20, -12, 20, -13, 21, -13, 21, -14, 22, -14, 22, -15, 23, -15, 23, -16, 24, -16, 24, -17, 25, -17, 25, -18, 26, -18, 26, -19, 27, -19, 27, -20, 28, -20, 28, -21, 29, -21, 29, -22, 30, -22, 30, -27)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_vlni2")
+}
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.15
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
